@@ -5,6 +5,11 @@ defmodule FizzBuzz do
     |> handle_fire_read()
   end
 
-  def handle_fire_read({:ok, result}), do: result
-  def handle_fire_read({:error, reason}), do: reason
+  def handle_fire_read({:ok, result}) do
+    result
+    |> String.split(",")
+    |> Enum.map(&String.to_integer/1)
+  end
+
+  def handle_fire_read({:error, reason}), do: "Error reading the file: #{reason}"
 end
